@@ -25,8 +25,8 @@ struct ContentView: View {
                 
                 Image("IMG_2583")
                     .resizable()
-                    .frame(width: 300, height: 300)
                     .scaledToFill()
+                    .frame(width: 300, height: 300)
                     .clipShape(Rectangle())
                     .border(.blue, width: 5) //경계선 추가
                     .cornerRadius(10) //둥근 모서리 적용
