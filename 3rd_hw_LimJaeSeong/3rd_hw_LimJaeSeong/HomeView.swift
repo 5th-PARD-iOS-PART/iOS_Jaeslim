@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct HomeView: View {
+    @Binding var path: NavigationPath
+    @EnvironmentObject var tdata : TData
+    @EnvironmentObject var hdata : HData
+    
     var body: some View {
         List{
             Section() {
@@ -75,65 +79,44 @@ struct HomeView: View {
             }//section 2
             .listSectionSpacing(10)
             
-                ForEach(0..<tossData.sampleData.count, id: \.self) {sectionIndex in
-                    Section(
-                        footer: HStack {
-                            Spacer()
-                            
-                            Text("대출0")
-                                .padding()
-                                .foregroundColor(.gray)
-                            
-                            Spacer()
-                            
-                            Divider()
-                            
-                            Spacer()
-                            
-                            Text("증권7")
-                                .padding()
-                                .foregroundColor(.gray)
-                            
-                            Spacer()
-                            
-                            Divider()
-                                .frame(width: 10)
-                            
-                            Spacer()
-                            
-                            Text("저축3")
-                                .padding()
-                                .foregroundColor(.gray)
-                            
-                            Spacer()
-                            
-                            Divider()
-                            
-                            Spacer()
-                            
-                            Text("전체26")
-                                .padding()
-                                .foregroundColor(.gray)
-                            
-                            Spacer()
-                        }
-                            .cornerRadius(20)
-                            .background(Color.gray.opacity(0.05))
-                    ) {
-                        ForEach(tossData.sampleData[sectionIndex]) { item in
-                            ZStack{
-                                NavigationLink(destination: bankView()){
-                                    
-                                }
-                                tossRow(data: item)
-                                
-                            }
-                        }
+            ForEach(0..<tossData.sampleData.count, id: \.self) { sectionIndex in
+                let sectionData = tossData.sampleData[sectionIndex]
+                let footerView = AnyView(
+                    HStack {
+                        Spacer()
+                        Text("대출0").padding().foregroundColor(.gray)
+                        Spacer()
+                        Divider()
+                        Spacer()
+                        Text("증권7").padding().foregroundColor(.gray)
+                        Spacer()
+                        Divider().frame(width: 10)
+                        Spacer()
+                        Text("저축3").padding().foregroundColor(.gray)
+                        Spacer()
+                        Divider()
+                        Spacer()
+                        Text("전체26").padding().foregroundColor(.gray)
+                        Spacer()
                     }
-                    .clipShape(RoundedRectangle(cornerRadius: 20))
-                    .listRowInsets(EdgeInsets())
-                }//section 3
-                .listSectionSpacing(10)
+                    .cornerRadius(20)
+                    .background(Color.gray.opacity(0.05))
+                )
+                
+                Section(footer: footerView) {
+                    ForEach(sectionData) { item in
+                        Button {
+                            path.append("bank")
+                        } label: {
+                            tossRow(data: item)
+                                .contentShape(Rectangle()) // 터치 영역 보장
+                        }
+                        .buttonStyle(PlainButtonStyle())
+                    }
+                }
+                .clipShape(RoundedRectangle(cornerRadius: 20))
+                .listRowInsets(EdgeInsets())
+            }
     
             Section() {
                 HStack(spacing:0){
@@ -423,9 +406,12 @@ struct HomeView: View {
             }//section 8
             
         } // List
+        .environmentObject(tdata)
+        .environmentObject(hdata)
     }
 }
 
 #Preview {
-    HomeView()
+    HomeView(path: .constant(NavigationPath()))
+        .environmentObject(Datas())
 }

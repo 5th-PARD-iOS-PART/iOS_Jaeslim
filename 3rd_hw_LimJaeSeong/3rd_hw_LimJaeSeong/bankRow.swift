@@ -15,19 +15,19 @@ struct bankRow: View {
             Image(data.image)
                 .resizable()
                 .scaledToFit()
-                .frame(width: 40, height: 40)
+                .frame(width: 45, height: 45)
                 .cornerRadius(10)
             
             VStack{
                 Text(data.name)
-                    .font(.system(size: 15))
+                    .font(.system(size: 18))
                     .padding(.horizontal,10)
                     .cornerRadius(10)
                     .foregroundColor(Color.black.opacity(0.6))
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
                 Text(data.time)
-                    .font(.system(size: 12))
+                    .font(.system(size: 15))
                     .foregroundColor(Color.gray)
                     .padding(.horizontal,12)
                     .cornerRadius(10)
@@ -39,7 +39,7 @@ struct bankRow: View {
             
             VStack{
                 Text(data.money)
-                    .font(.system(size: 15))
+                    .font(.system(size: 18))
                     .padding(.horizontal, 15)
                     .foregroundColor(Color.black.opacity(0.6))
                     .cornerRadius(10)

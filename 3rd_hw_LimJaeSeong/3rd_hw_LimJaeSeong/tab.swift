@@ -8,20 +8,16 @@
 import SwiftUI
 
 struct tab: View {
-    
-    init() {
-        let appearance = UITabBarAppearance()
-        
-        UITabBar.appearance().standardAppearance = appearance
-        UITabBar.appearance().scrollEdgeAppearance = appearance
-    }
+    @Binding var path: NavigationPath
     @State private var selection = 0
+    @EnvironmentObject var tdata : TData
+    @EnvironmentObject var hdata : HData
 
     var body: some View {
         ZStack{
             
             TabView(selection: $selection) {
-                HomeView()
+                HomeView(path: $path)
                 .tabItem{
                     Image("home")
                     Text("홈")
@@ -66,9 +62,11 @@ struct tab: View {
                 
             }
         }
+        .environmentObject(tdata)
+        .environmentObject(hdata)
     }
 }
 
-#Preview {
-    tab()
-}
+//#Preview {
+//    tab()
+//}
