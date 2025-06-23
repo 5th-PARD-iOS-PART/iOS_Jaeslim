@@ -10,12 +10,12 @@ import SwiftUI
 struct ShopView: View {
     @StateObject private var shopViewModel = ShopViewModel()
     
-    @State private var image: String = ""
-    @State private var name: String = ""
-    @State private var price: String = ""
-    @State private var retailprice: String = ""
-    @State private var award: String = ""
-    @State private var views: String = ""
+//    @State private var image: String = ""
+//    @State private var name: String = ""
+//    @State private var price: String = ""
+//    @State private var retailprice: String = ""
+//    @State private var award: String = ""
+//    @State private var views: String = ""
     
     @State private var selectedTab = 0
     let tabTitles = ["모두", "특가", "식품", "의류", "전자제품", "뷰티"]
