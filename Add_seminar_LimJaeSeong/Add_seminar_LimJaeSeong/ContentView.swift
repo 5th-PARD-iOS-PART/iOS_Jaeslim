@@ -11,6 +11,66 @@ struct ContentView: View {
     var body: some View {
         ScrollView{
             LazyVStack {
+                ZStack{
+                    HStack{
+                        Spacer()
+                        
+                        VStack(alignment: .leading, spacing: 8){
+                            Text("맛있으면 울어")
+                                .font(.system(size: 25, weight: .bold))
+                            
+                            HStack{
+                                Text("#맵찔이")
+                                
+                                Text("#향신료 NO")
+                                
+                                Text("#오이 NO")
+                            }
+                            .font(.system(size: 12, weight: .semibold))
+                            .foregroundColor(Color.orange)
+                            .underline()
+                            
+                            Text("고유입맛 수정하기>")
+                                .font(.system(size: 12, weight: .semibold))
+                                .foregroundColor(Color.gray.opacity(0.6))
+                                .underline()
+                        }
+                        Spacer()
+                        Spacer()
+                        Spacer()
+                        
+                        ZStack{
+                            Circle()
+                                .fill(Color.orange.opacity(0.2))
+                                .frame(width: 90, height: 90)
+                                .overlay(
+                                    Circle().stroke(Color.orange, lineWidth: 2)
+                                )
+                            
+                            Image("dog")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 60, height: 60)
+                            
+                            Button(action: {
+                                print("더하기 버튼 눌림")
+                            }) {
+                                Image(systemName: "plus")
+                                    .font(.system(size: 12, weight: .semibold))
+                                    .foregroundColor(.orange)
+                                    .frame(width: 20, height: 20)
+                                    .background(Circle().fill(Color.white))
+                                    .overlay(
+                                        Circle().stroke(Color.orange, lineWidth: 2)
+                                    )
+                            }
+                            .offset(x: 32, y: 32)
+                        }
+                        
+                        Spacer()
+                    }
+                }
+                
                 HStack{
                     Spacer()
                     
