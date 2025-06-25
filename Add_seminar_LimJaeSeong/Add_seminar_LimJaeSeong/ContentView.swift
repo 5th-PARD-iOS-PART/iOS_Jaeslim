@@ -10,11 +10,12 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         ScrollView{
-            LazyVStack {
+            LazyVStack(alignment: .leading) {
+                Text("MY")
+                    .font(.system(size: 25, weight: .bold))
+                
                 ZStack{
                     HStack{
-                        Spacer()
-                        
                         VStack(alignment: .leading, spacing: 8){
                             Text("맛있으면 울어")
                                 .font(.system(size: 25, weight: .bold))
@@ -66,8 +67,6 @@ struct ContentView: View {
                             }
                             .offset(x: 32, y: 32)
                         }
-                        
-                        Spacer()
                     }
                 }
                 
@@ -315,6 +314,7 @@ struct ContentView: View {
             .padding()
             
         }
+        .padding(.horizontal, 10)
     }
 }
 

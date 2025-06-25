@@ -14,7 +14,7 @@ struct CustomRoundedTabBar: View {
         ZStack {
             // 둥근 배경 탭바
             HStack {
-                TabBarItem(imageName: "friend", title: "친구 찾기", isSelected: selectedIndex == 0) {
+                TabBarItem(imageName: "friend_gray", title: "친구 찾기", isSelected: selectedIndex == 0) {
                     selectedIndex = 0
                 }
                 Spacer()
@@ -22,7 +22,7 @@ struct CustomRoundedTabBar: View {
                 // 빈 공간: 중앙 탭은 ZStack에 별도로 표시
                 Spacer()
 
-                TabBarItem(imageName: "my", title: "MY", isSelected: selectedIndex == 2) {
+                TabBarItem(imageName: "my_gray", title: "MY", isSelected: selectedIndex == 2) {
                     selectedIndex = 2
                 }
             }
@@ -31,27 +31,32 @@ struct CustomRoundedTabBar: View {
             .background(
                 Color.white
                     .clipShape(RoundedRectangle(cornerRadius: 25))
-                    .shadow(color: Color.black.opacity(0.15), radius: 8, y: -2)
+                    .shadow(color: Color.black.opacity(0.15), radius: 2, y: -2)
             )
-            .frame(height: 70)
-            .padding(.horizontal)
+            //.frame(height: 70)
+            .padding(.top)
 
             // 가운데 탭 버튼: 두 번째 탭
             Button(action: {
                 selectedIndex = 1
             }) {
                 VStack(spacing: 4) {
-                    Image("mumuk") 
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 80, height: 80)
+                    ZStack{
+                        Circle()
+                            .frame(width: 75, height: 75)
+                            .foregroundColor(Color.white)
+                            .shadow(color: Color.black.opacity(0.15), radius: 8, y: -2)
                         
-                        .background(Color.orange)
-                        .clipShape(Circle())
-                        .shadow(color: Color.orange.opacity(0.3), radius: 6, y: 5)
+                        Image("mumuk")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 60, height: 60)
+                            .background(Color.orange)
+                            .clipShape(Circle())
+                    }
 
                     Text("메뉴 추천")
-                        .font(.caption)
+                        .font(.system(size: 13))
                         .foregroundColor(selectedIndex == 1 ? .orange : .gray)
                 }
             }
@@ -75,8 +80,9 @@ struct TabBarItem: View {
                     .scaledToFit()
                     .frame(width: 24, height: 24)
                     .foregroundColor(isSelected ? .orange : .gray)
+                
                 Text(title)
-                    .font(.caption)
+                    .font(.system(size: 13))
                     .foregroundColor(isSelected ? .orange : .gray)
             }
         }

@@ -30,6 +30,8 @@ struct Tab: View {
             // 커스텀 탭바
             CustomRoundedTabBar(selectedIndex: $selectedIndex)
         }
+        .ignoresSafeArea(.keyboard, edges: .bottom)
+        .ignoresSafeArea(.container, edges: .bottom)
         .edgesIgnoringSafeArea(.bottom)
     }
 }
